@@ -1,4 +1,4 @@
-//__________________________ПОИСК ЭЛЕМЕНТОВ________________________
+
 const input = document.querySelector('.input__search');
 const inputData = document.querySelector('.input__data');
 const searchNow = document.querySelectorAll('.input__option');
@@ -6,16 +6,10 @@ const btnClose = document.querySelector('.result__closse');
 const fixElement = document.querySelectorAll('.result__elem')
 let inputFix = document.querySelector('.input__fix');
 let option = document.querySelector('.input__option');
-//_________________________________________________________________
 
-
-//_____________________________ПЕРЕМЕННЫЕ__________________________
 let map = new Map();
 let search = '';
-//_________________________________________________________________
 
-
-//_____________________________ФУНКЦИИ_____________________________
 
 //задержка времени на выполнение, после события
 const debounce = (fn, debounceTime) => {
@@ -53,13 +47,11 @@ async function addList() {
 	for (let i = 0; i < 5; i++) {		
 
 		option = document.createElement('div');
-		option.classList.add('input__option');
-		//await console.log(repositories.items[i]['id'])	
+		option.classList.add('input__option');	
 		await option.append(repositories.items[i]['name']);
 		option.id = repositories.items[i]['id']
 		await map.set(option.id, repositories.items[i])
 		fragment.append(option)
-		//console.log(fragment)
 	}	
 	inputData.append(fragment)
 }
@@ -77,7 +69,6 @@ function removeElement() {
 
 //добавлениие выбранных элементов в отдельный список
 function createAddedElement(target) {
-	//console.log(target)
 	let fragment = new DocumentFragment();
 
 	let fixElem = document.createElement('div');
@@ -87,7 +78,6 @@ function createAddedElement(target) {
 	
 	let resName = document.createElement('div')
 	resName.classList.add('result__name')
-	//console.log(map.get(target))
 	resName.textContent = `Name: ${map.get(target).name}`
 	leftSide.append(resName)
 
@@ -115,11 +105,7 @@ function createAddedElement(target) {
 	btnClose.addEventListener('click', () => {
 		fixElem.remove()
 	})
-}
-
-
-
-//____________________________СЛУШАТЕЛИ____________________________
+}_
 
 //ожидание ввода пользователем запроса
 input.addEventListener('keyup', debounce(addList, 500));
@@ -132,7 +118,6 @@ inputData.addEventListener('click', (ev) => {
 
 	createAddedElement(target.id);
 
-	//удаляю с некоторой задержкой, чтобы видеть что именно выбрали
 	setTimeout(() => {
 		input.value = '';
 	}, 200)
