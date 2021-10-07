@@ -105,7 +105,7 @@ function createAddedElement(target) {
 	btnClose.addEventListener('click', () => {
 		fixElem.remove()
 	})
-}_
+}
 
 //ожидание ввода пользователем запроса
 input.addEventListener('keyup', debounce(addList, 500));
